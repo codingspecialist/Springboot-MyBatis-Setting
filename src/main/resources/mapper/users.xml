@@ -5,8 +5,8 @@
 <mapper namespace="site.metacoding.red.domain.users.UsersDao">
 	
 	<insert id="insert">
-		INSERT INTO users(username, password, email, createdAt) 
-		VALUES(#{username}, #{password}, #{email}, sysdate)
+		INSERT INTO users(id, username, password, email, createdAt) 
+		VALUES(users_seq.nextval, #{username}, #{password}, #{email}, sysdate)
 	</insert>
 
 	<select id="findById" resultType="site.metacoding.red.domain.users.Users">
