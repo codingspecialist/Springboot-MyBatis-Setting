@@ -6,7 +6,7 @@
 	
 	<insert id="insert">
 		INSERT INTO users(username, password, email, createdAt) 
-		VALUES(#{username}, #{password}, #{email}, now())
+		VALUES(#{username}, #{password}, #{email}, sysdate)
 	</insert>
 
 	<select id="findById" resultType="site.metacoding.red.domain.users.Users">
