@@ -4,6 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.metacoding.red.domain.boards.BoardsDao">
 	
+	<select id="findByIdtoDetail" resultType="site.metacoding.red.domain.boards.mapper.BoardsDetail">
+		SELECT b.id, b.title, b.content, b.usersId, b.createdAt,
+		             u.username, u.password, u.email
+		FROM boards b INNER JOIN users u
+		ON b.usersId = u.id
+		WHERE b.id = #{id}
+	</select>
+	
 	<delete id="delete">
 		DELETE FROM boards WHERE id = #{id}
 	</delete>

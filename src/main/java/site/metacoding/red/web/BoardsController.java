@@ -20,6 +20,7 @@ public class BoardsController {
 	
 	private final BoardsDao boardsDao;
 
+
 	@PostMapping("/boards")
 	public RespDto<?> insert(WriteDto writeDto){ // x-www 머시기 (key=value&key=value)
 		boardsDao.insert(writeDto);
@@ -33,7 +34,7 @@ public class BoardsController {
 	
 	@GetMapping("/boards/{id}")
 	public RespDto<?> getOne(@PathVariable Integer id){
-		return new RespDto<>(1, "글조회성공", boardsDao.findById(id));
+		return new RespDto<>(1, "글조회성공", boardsDao.findByIdtoDetail(id));
 	}
 	
 	@DeleteMapping("/boards/{id}")
