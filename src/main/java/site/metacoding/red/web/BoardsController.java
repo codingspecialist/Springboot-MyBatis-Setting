@@ -30,10 +30,10 @@ public class BoardsController {
 	public RespDto<?> getAll(){
 		return new RespDto<>(1, "글전체조회성공", boardsDao.findAll());
 	}
-	
+		
 	@GetMapping("/boards/{id}")
-	public RespDto<?> getOne(@PathVariable Integer id){
-		return new RespDto<>(1, "글조회성공", boardsDao.findById(id));
+	public RespDto<?> getOneOrm(@PathVariable Integer id){
+		return new RespDto<>(1, "글조회성공", boardsDao.findByIdOrm(id));
 	}
 	
 	@DeleteMapping("/boards/{id}")

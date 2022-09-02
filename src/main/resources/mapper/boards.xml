@@ -4,6 +4,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.metacoding.red.domain.boards.BoardsDao">
 	
+	<select id="findByIdOrm"  resultMap="boardsOrm">
+		SELECT 
+			b.id, b.title, b.content, b.createdAt, 
+		    u.id, u.username, u.password, u.email, u.createdAt
+		FROM boards b INNER JOIN users u 
+		ON b.id = u.id 
+		WHERE b.id = #{id}
+	</select>
+	 
+	<resultMap type="site.metacoding.red.domain.boards.orm.BoardsOrm"  id="boardsOrm">
+		<id column="id" property="id"/>
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="createdAt" property="createdAt" />
+		<association column="usersId" property="users" javaType="site.metacoding.red.domain.users.Users">
+			<id column="id" property="id"/>
+			<result column="username" property="username" />
+			<result column="password" property="password" />
+			<result column="email" property="email" />
+			<result column="createdAt" property="createdAt" />
+		</association>
+	</resultMap>
+	
 	<delete id="delete">
 		DELETE FROM boards WHERE id = #{id}
 	</delete>
